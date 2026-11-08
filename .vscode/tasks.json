@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run FastAPI Server",
+			"type": "shell",
+			"command": "c:/Users/Public/academic coll/.venv/Scripts/uvicorn.exe",
+			"args": [
+				"src.main:app",
+				"--reload"
+			],
+			"isBackground": true,
+			"group": "build"
+		}
+	]
+}

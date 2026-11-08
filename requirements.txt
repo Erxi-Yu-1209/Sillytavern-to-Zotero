@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+llama-index
+python-dotenv
+openai
+llama-cpp-python
+llama-index-embeddings-huggingface
+llama-index-embeddings-openai
+tenacity
+qdrant-client[fastembed]
+httpx
+pyyaml
+PyPDF2
+apscheduler
+litellm

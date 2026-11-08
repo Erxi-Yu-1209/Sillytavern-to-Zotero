@@ -1,0 +1,35 @@
+model_list:
+  - model_name: "${RELAY_MODEL}"
+    litellm_params:
+      model: "openai/${RELAY_MODEL}"
+      api_base: "${RELAY_API_BASE}"
+      api_key: "${RELAY_API_KEY}"
+      timeout: 30
+
+  - model_name: "${FIELD_NOTES_CHAT_MODEL}"
+    litellm_params:
+      model: "openai/${FIELD_NOTES_CHAT_MODEL}"
+      api_base: "${LOCAL_LLAMA_BASE_DOCKER}"
+      api_key: "${LOCAL_LLAMA_KEY}"
+      timeout: 30
+
+default:
+  base_url: "http://localhost:4000"
+  timeout: 30
+
+routes:
+  - name: "academic_papers"
+    model_name: "${RELAY_MODEL}"
+    condition: "status < 400"
+
+  - name: "field_notes_local"
+    model_name: "${FIELD_NOTES_CHAT_MODEL}"
+    condition: "status < 400"
+
+retry:
+  max_attempts: 5
+  wait:
+    type: "exponential"
+    multiplier: 1
+    min: 2
+    max: 10
